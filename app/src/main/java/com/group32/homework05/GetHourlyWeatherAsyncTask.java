@@ -91,6 +91,8 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
                 weatherList.add(new Weather(epochTime,temperature,dewPoint,clouds,iconURL,
                         windSpeed,windDirection,climateType,humidity,feelsLike,null,null,pressure));
 
+
+
             }
 
         } catch (JSONException e) {

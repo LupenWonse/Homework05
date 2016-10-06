@@ -18,7 +18,7 @@ import java.util.List;
 public class FavoriteListAdapter extends ArrayAdapter<Favorite> {
 
     private Context context;
-    private List<Favorite> favoriteList;
+    public List<Favorite> favoriteList;
     private int rowResource;
 
     public FavoriteListAdapter(Context context, int resource, List<Favorite> objects) {

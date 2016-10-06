@@ -64,6 +64,13 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     @Override
     public void weatherDataUpdated(ArrayList<Weather> weatherData) {
         progressLoadingData.dismiss();
+
+        for (Weather currentWeatherData:weatherData
+             ) {
+            currentWeatherData.setCity(city);
+            currentWeatherData.setState(state);
+        }
+
         this.weatherData = weatherData;
 
         weatherListView = (ListView) findViewById(R.id.listHourlyWeather);

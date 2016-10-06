@@ -8,11 +8,16 @@ public class Weather implements Serializable {
         iconURL, windSpeed, windDirection, climateType,
         humidity, maximumTemperature, minimumTemperature, pressure, feelsLike;
 
+    private String city,state;
+
     public String getFeelsLike() {
         return feelsLike;
     }
 
-    public Weather(String time, String temperature, String dewpoint, String clouds, String iconURL, String windSpeed, String windDirection, String climateType, String humidity, String feelsLike, String maximumTemperature, String minimumTemperature, String pressure) {
+    public Weather(String time, String temperature, String dewpoint, String clouds, String iconURL,
+                   String windSpeed, String windDirection, String climateType, String humidity,
+                   String feelsLike, String maximumTemperature, String minimumTemperature,
+                   String pressure) {
         this.time = time;
         this.temperature = temperature;
         this.dewpoint = dewpoint;
@@ -79,6 +84,30 @@ public class Weather implements Serializable {
 
     public String getWind(){
         return windSpeed + windDirection;
+    }
+
+    public String getLocation() {
+        if (city != null && state != null){
+            return city + ", " + state;
+        } else {
+            return "Location unknown";
+        }
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
 

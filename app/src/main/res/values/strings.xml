@@ -925,5 +925,7 @@
 	]
 }</string>
 	<string name="actionAddToFav">Add to Favorites</string>
+	<string name="textLabelNoFavorites">There is no city in your Favorites</string>
+	<string name="textLabelFavorites">Favorites</string>
 
 </resources>

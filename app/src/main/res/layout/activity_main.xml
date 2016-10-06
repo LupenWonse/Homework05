@@ -40,10 +40,10 @@
         android:text="@string/buttonSearch" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/textLabelNoFavorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/textFavoritesTitle" />
 
     <ListView
         android:layout_width="match_parent"

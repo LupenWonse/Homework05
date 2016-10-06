@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,42 +24,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ArrayList<Favorite> favorites;
     private FavoriteListAdapter favoriteListAdapter;
+    private ListView favoriteListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView favoriteList = (ListView) findViewById(R.id.listFavorites);
-        favoriteList.setOnItemLongClickListener(this);
+        favoriteListView = (ListView) findViewById(R.id.listFavorites);
+        favorites = new ArrayList<>();
+        favoriteListAdapter = new FavoriteListAdapter(this,R.layout.favorite_list_row,favorites);
+        favoriteListView.setAdapter(favoriteListAdapter);
+        favoriteListView.setOnItemLongClickListener(this);
+        loadFavoritesList();
 
-        SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
-        String jsonFavorites = preferences.getString("FAVS",null);
-        if( jsonFavorites != null) {
 
-            Gson gson = new Gson();
-            favorites = gson.fromJson(jsonFavorites, new TypeToken<ArrayList<Favorite>>(){}.getType());
-            favoriteListAdapter = new FavoriteListAdapter(this, R.layout.favorite_list_row, favorites);
-            favoriteList.setAdapter(favoriteListAdapter);
-        } else {
-            Log.d("test","Could not get Preferences");
-        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
-        String jsonFavorites = preferences.getString("FAVS",null);
-        if( jsonFavorites != null) {
-
-            Gson gson = new Gson();
-            favorites = gson.fromJson(jsonFavorites, new TypeToken<ArrayList<Favorite>>(){}.getType());
-            favoriteListAdapter.notifyDataSetChanged();
-        } else {
-            Log.d("test","Could not get Preferences");
-        }
+        loadFavoritesList();
     }
+
+
 
     public void startSearch(View view){
         EditText textCity = (EditText) findViewById(R.id.editTextCity);
@@ -77,9 +66,41 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        favoriteListAdapter.remove(favoriteListAdapter.getItem(position));
-        favoriteListAdapter.notifyDataSetChanged();
-
+        favorites.remove(favoriteListAdapter.getItem(position));
+        saveFavoritesList();
+        loadFavoritesList();
         return true;
     }
+
+    private void saveFavoritesList() {
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(favorites);
+
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS",0).edit();
+        editor.putString("FAVS",jsonString);
+        editor.apply();
+    }
+
+    private void loadFavoritesList(){
+        SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
+        String jsonFavorites = preferences.getString("FAVS",null);
+
+        if( jsonFavorites != null) {
+            Gson gson = new Gson();
+            this.favorites = gson.fromJson(jsonFavorites, new TypeToken<ArrayList<Favorite>>() {
+            }.getType());
+
+            favoriteListAdapter.clear();
+            favoriteListAdapter.addAll(favorites);
+            favoriteListAdapter.notifyDataSetChanged();
+            if (favorites.size() > 0) {
+                ((TextView) findViewById(R.id.textFavoritesTitle)).setText(getString(R.string.textLabelFavorites));
+            } else {
+                ((TextView) findViewById(R.id.textFavoritesTitle)).setText(getString(R.string.textLabelNoFavorites));
+            }
+        }
+
+    }
+
+
 }
