@@ -1,6 +1,8 @@
 package com.group32.homework05;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Weather implements Serializable,Comparable<Weather>{
 
@@ -36,6 +38,12 @@ public class Weather implements Serializable,Comparable<Weather>{
 
     public String getTime() {
         return time;
+    }
+
+    public String getFormattedTime() {
+        Date date = new Date(Long.parseLong(time));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa");
+        return dateFormat.format(date);
     }
 
     public String getTemperature() {
