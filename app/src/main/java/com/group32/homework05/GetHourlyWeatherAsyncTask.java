@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList<Weather>> {
 
     private IWeatherDataHandler dataHandler;
-    private boolean isError = false;
+    private String errorMessage = null;
 
     public GetHourlyWeatherAsyncTask(IWeatherDataHandler dataHandler) {
         this.dataHandler = dataHandler;
@@ -35,6 +35,7 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
     protected ArrayList<Weather> doInBackground(String... params) {
         URL connectionURL = null;
         try {
+            Log.d("test",params[0]);
             connectionURL = new URL(params[0]);
             HttpURLConnection connection = (HttpURLConnection) connectionURL.openConnection();
             connection.setRequestMethod("GET");
@@ -72,11 +73,12 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
             // Check for error
             JSONObject responseJSON = rootJSON.getJSONObject("response");
             if (responseJSON.has("error")){
-
+                errorMessage = responseJSON.getJSONObject("error").getString("description");
+                return null;
+            } else if (responseJSON.has("results")) {
+                errorMessage = "Muliplte cities found";
+                return null;
             }
-
-
-
             JSONArray hourlyJSON = rootJSON.getJSONArray("hourly_forecast");
 
             for(int item = 0 ; item < hourlyJSON.length() ; item ++){
@@ -101,27 +103,31 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
                         windSpeed,windDirection,climateType,humidity,feelsLike,null,null,pressure));
 
 
-
             }
-
+            return weatherList;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        return null;
 
         // TODO Remove and replace Debug code
         //Weather debugWeather = new Weather();
         //debugWeather.temperature = "23";
 
-        return weatherList;
+
     }
 
     @Override
     protected void onPostExecute(ArrayList<Weather> weatherData) {
-        dataHandler.weatherDataUpdated(weatherData);
+        if (weatherData != null) {
+            dataHandler.weatherDataUpdated(weatherData);
+        } else if (errorMessage != null) {
+            dataHandler.onError(errorMessage);
+        }
     }
 }
 
 interface IWeatherDataHandler{
     void weatherDataUpdated(ArrayList<Weather> weatherData);
+    void onError(String errorMessage);
 }

@@ -23,6 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class CityWeatherActivity extends AppCompatActivity implements IWeatherDataHandler, AdapterView.OnItemClickListener {
 
@@ -92,7 +97,16 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     }
 
     public void onError(String error){
+        progressLoadingData.dismiss();
         Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                finish();
+            }
+        },5000);
     }
 
     @Override
