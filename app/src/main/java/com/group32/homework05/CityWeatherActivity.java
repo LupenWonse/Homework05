@@ -13,16 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collections;
 
 public class CityWeatherActivity extends AppCompatActivity implements IWeatherDataHandler, AdapterView.OnItemClickListener {
 
@@ -36,6 +35,9 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     private ArrayList<Weather> weatherData;
     private WeatherListAdapter weatherAdapter;
     private ListView weatherListView;
+    private TextView textViewCurrentLocation;
+    String maximumTemparature;
+    String mininumTemparature ;
 
 
     @Override
@@ -54,7 +56,8 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         // TODO Check intent
         city = getIntent().getStringExtra(MainActivity.CITY_EXTRAS_KEY);
         state = getIntent().getStringExtra(MainActivity.STATE_EXTRAS_KEY);
-
+        textViewCurrentLocation = (TextView) findViewById(R.id.txtViewDataCurrentLocation);
+        textViewCurrentLocation.setText(String.format("%s, %s",city,state));
         // TODO Update to the internet APU when done with the codes
         //String url = "http://api.wunderground.com/api/"+API_KEY+"/hourly/q/"+state+"/"+city+".json";
         String url = "http://webpages.uncc.edu/agencogl/San_Francisco.json";
@@ -65,9 +68,14 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     @Override
     public void weatherDataUpdated(ArrayList<Weather> weatherData) {
         progressLoadingData.dismiss();
-
+        Weather maxTemp = Collections.max(weatherData);
+        Weather minTemp = Collections.min(weatherData);
+        maximumTemparature = maxTemp.getTemperature();
+        mininumTemparature = minTemp.getTemperature();
         for (Weather currentWeatherData:weatherData
              ) {
+            currentWeatherData.setMaximumTemperature(maximumTemparature);
+            currentWeatherData.setMinimumTemperature(mininumTemparature);
             currentWeatherData.setCity(city);
             currentWeatherData.setState(state);
         }
@@ -113,7 +121,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE,1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
-                Favorite newFavorite = new Favorite("10",city,state, dateFormat.format(calendar.getTime()));
+                Favorite newFavorite = new Favorite(maximumTemparature,city,state, dateFormat.format(calendar.getTime()));
 
                 if (jsonString == null) {
                     // If this preference is not set we have to set it

@@ -23,28 +23,35 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_gallery"
         android:layout_below="@+id/textCurrentLocation"
         android:layout_centerHorizontal="true"
-        android:id="@+id/imageLargeWeather" />
+        android:id="@+id/imageLargeWeather"
+        android:layout_height="80dp" />
 
     <TextView
         android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageLargeWeather"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textTemperature" />
+        android:id="@+id/textTemperature"
+        android:foregroundGravity="center_horizontal"
+        android:layout_marginTop="-18dp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textSize="24sp" />
 
     <TextView
         android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textTemperature"
         android:layout_alignLeft="@+id/textTemperature"
         android:layout_alignStart="@+id/textTemperature"
-        android:id="@+id/textClimate" />
+        android:id="@+id/textClimate"
+        android:textAlignment="center"
+        android:textSize="16sp" />
 
     <TextView
         android:text="@string/labelMaximumTemperature"
@@ -53,7 +60,8 @@
         android:layout_below="@+id/textClimate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textViewMaximumTemparature" />
+        android:id="@+id/textViewMaximumTemparature"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelMinTemperature"
@@ -62,7 +70,8 @@
         android:layout_below="@+id/textViewMaximumTemparature"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textViewMinimumTempararure" />
+        android:id="@+id/textViewMinimumTempararure"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelFeelsLike"
@@ -71,7 +80,9 @@
         android:layout_below="@+id/textViewMinimumTempararure"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textViewFeelsLike" />
+        android:id="@+id/textViewFeelsLike"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelDewpoint"
@@ -80,7 +91,8 @@
         android:layout_below="@+id/textViewHumidity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textViewDewPoint" />
+        android:id="@+id/textViewDewPoint"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelPressure"
@@ -89,7 +101,8 @@
         android:layout_below="@+id/textViewDewPoint"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textViewPressure" />
+        android:id="@+id/textViewPressure"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelClouds"
@@ -100,7 +113,8 @@
         android:layout_alignEnd="@+id/textViewPressure"
         android:id="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelHumidity"
@@ -109,7 +123,8 @@
         android:id="@+id/textViewHumidity"
         android:layout_below="@+id/textViewFeelsLike"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="@string/labelWinds"
@@ -118,7 +133,8 @@
         android:id="@+id/textViewWinds"
         android:layout_below="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="TextView"
@@ -127,7 +143,9 @@
         android:id="@+id/textClouds"
         android:layout_below="@+id/textPressure"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -136,7 +154,9 @@
         android:id="@+id/textWinds"
         android:layout_below="@+id/textClouds"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -145,7 +165,9 @@
         android:id="@+id/textPressure"
         android:layout_below="@+id/textDewpoint"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -154,7 +176,9 @@
         android:id="@+id/textDewpoint"
         android:layout_below="@+id/textHumidity"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -163,7 +187,9 @@
         android:id="@+id/textHumidity"
         android:layout_below="@+id/textFeelsLike"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -172,7 +198,10 @@
         android:id="@+id/textFeelsLike"
         android:layout_below="@+id/textMinTemperature"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="TextView"
@@ -181,7 +210,9 @@
         android:id="@+id/textMinTemperature"
         android:layout_below="@+id/textMaxTemperature"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textStyle="normal|bold"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="TextView"
@@ -190,6 +221,8 @@
         android:id="@+id/textMaxTemperature"
         android:layout_below="@+id/textClimate"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textStyle="normal|bold"
+        android:paddingTop="5dp" />
 
 </RelativeLayout>

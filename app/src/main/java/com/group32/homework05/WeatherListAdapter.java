@@ -46,7 +46,7 @@ public class WeatherListAdapter extends ArrayAdapter<Weather> {
 
         Weather currentWeather = weatherList.get(position);
 
-        ((TextView) convertView.findViewById(R.id.textTemperature)).setText(currentWeather.getTemperature());
+        ((TextView) convertView.findViewById(R.id.textTemperature)).setText(String.format("%s° F",currentWeather.getTemperature()));
 
         DateFormat dateFormat = new SimpleDateFormat("hh:mm aa");
         Date currentDate = new Date(Long.decode(currentWeather.getTime())*1000);

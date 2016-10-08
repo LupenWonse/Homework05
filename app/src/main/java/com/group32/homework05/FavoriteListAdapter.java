@@ -38,17 +38,12 @@ public class FavoriteListAdapter extends ArrayAdapter<Favorite> {
             convertView = inflater.inflate(this.rowResource, parent, false);
         }
         Favorite currentFavorite = favoriteList.get(position);
-        String currentFavouriteTemp = String.format("%s F",currentFavorite.getTemperature());
+        String currentFavouriteTemp = String.format("%s° F",currentFavorite.getTemperature());
         String currentFavouriteLocation = String.format("%s, %s",currentFavorite.getCity(),currentFavorite.getState());
-        String dateText = "Updated On: ";
-        if(currentFavorite.getUpdateDate() !=null)
-        {
-            dateText += currentFavorite.getUpdateDate();
-        }
         String currentfavouriteUpdatedDate = String.format("Updated on: %s",currentFavorite.getUpdateDate());
         ((TextView) convertView.findViewById(R.id.textTemperature)).setText(currentFavouriteTemp);
         ((TextView) convertView.findViewById(R.id.textLocation)).setText(currentFavouriteLocation);
-        ((TextView) convertView.findViewById(R.id.textUpdated)).setText(dateText);
+        ((TextView) convertView.findViewById(R.id.textUpdated)).setText(currentfavouriteUpdatedDate);
 
         return convertView;
     }

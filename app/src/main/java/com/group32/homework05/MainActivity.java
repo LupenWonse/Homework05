@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         favorites.remove(favoriteListAdapter.getItem(position));
         saveFavoritesList();
         loadFavoritesList();
-        Toast.makeText(MainActivity.this,"City Delete",Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this,"City Deleted",Toast.LENGTH_LONG).show();
         return true;
     }
 

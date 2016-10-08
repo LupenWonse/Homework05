@@ -2,11 +2,11 @@ package com.group32.homework05;
 
 import java.io.Serializable;
 
-public class Weather implements Serializable {
+public class Weather implements Serializable,Comparable<Weather>{
 
     private String time, temperature, dewpoint, clouds,
         iconURL, windSpeed, windDirection, climateType,
-        humidity, maximumTemperature, minimumTemperature, pressure, feelsLike;
+        humidity, maximumTemperature,minimumTemperature,pressure, feelsLike;
 
     private String city,state;
 
@@ -94,6 +94,14 @@ public class Weather implements Serializable {
         }
     }
 
+    public void setMinimumTemperature(String minimumTemperature) {
+        this.minimumTemperature = minimumTemperature;
+    }
+
+    public void setMaximumTemperature(String maximumTemperature) {
+        this.maximumTemperature = maximumTemperature;
+    }
+
     public String getCity() {
         return city;
     }
@@ -108,6 +116,11 @@ public class Weather implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public int compareTo(Weather another) {
+        return this.getTemperature().compareTo(another.getTemperature());
     }
 }
 

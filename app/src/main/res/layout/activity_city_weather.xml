@@ -10,11 +10,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.group32.homework05.CityWeatherActivity">
 
+    <TextView
+        android:text="@string/txtview_label_current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLabelCurrentLocation" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewLabelCurrentLocation"
+        android:layout_toRightOf="@+id/textViewLabelCurrentLocation"
+        android:layout_marginStart="15dp"
+        android:id="@+id/txtViewDataCurrentLocation"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="TextView"
+        android:textStyle="normal|bold" />
+
+    <View android:id="@+id/separator"
+        android:background="@android:color/darker_gray"
+        android:layout_width = "wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/textViewLabelCurrentLocation"/>
+
     <ListView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/listHourlyWeather" />
+        android:id="@+id/listHourlyWeather"
+        android:layout_marginTop="30dp" />
+
 </RelativeLayout>
