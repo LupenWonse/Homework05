@@ -2,6 +2,7 @@ package com.group32.homework05;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +38,17 @@ public class FavoriteListAdapter extends ArrayAdapter<Favorite> {
             convertView = inflater.inflate(this.rowResource, parent, false);
         }
         Favorite currentFavorite = favoriteList.get(position);
-
-        ((TextView) convertView.findViewById(R.id.textTemperature)).setText(currentFavorite.getTemperature());
-        ((TextView) convertView.findViewById(R.id.textLocation)).setText(currentFavorite.getCity());
-        ((TextView) convertView.findViewById(R.id.textUpdated)).setText("Updated");
+        String currentFavouriteTemp = String.format("%s F",currentFavorite.getTemperature());
+        String currentFavouriteLocation = String.format("%s, %s",currentFavorite.getCity(),currentFavorite.getState());
+        String dateText = "Updated On: ";
+        if(currentFavorite.getUpdateDate() !=null)
+        {
+            dateText += currentFavorite.getUpdateDate();
+        }
+        String currentfavouriteUpdatedDate = String.format("Updated on: %s",currentFavorite.getUpdateDate());
+        ((TextView) convertView.findViewById(R.id.textTemperature)).setText(currentFavouriteTemp);
+        ((TextView) convertView.findViewById(R.id.textLocation)).setText(currentFavouriteLocation);
+        ((TextView) convertView.findViewById(R.id.textUpdated)).setText(dateText);
 
         return convertView;
     }

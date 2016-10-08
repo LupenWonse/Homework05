@@ -12,12 +12,14 @@
     tools:context="com.group32.homework05.DetailsActivity">
 
     <TextView
-        android:text="TextView"
+        android:text="@string/txtview_label_current_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/textCurrentLocation" />
+
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -51,52 +53,52 @@
         android:layout_below="@+id/textClimate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView4" />
+        android:id="@+id/textViewMaximumTemparature" />
 
     <TextView
         android:text="@string/labelMinTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/textViewMaximumTemparature"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView6" />
+        android:id="@+id/textViewMinimumTempararure" />
 
     <TextView
         android:text="@string/labelFeelsLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
+        android:layout_below="@+id/textViewMinimumTempararure"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView14" />
+        android:id="@+id/textViewFeelsLike" />
 
     <TextView
         android:text="@string/labelDewpoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView15"
+        android:layout_below="@+id/textViewHumidity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView16" />
+        android:id="@+id/textViewDewPoint" />
 
     <TextView
         android:text="@string/labelPressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView16"
+        android:layout_below="@+id/textViewDewPoint"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView17" />
+        android:id="@+id/textViewPressure" />
 
     <TextView
         android:text="@string/labelClouds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView17"
-        android:layout_alignRight="@+id/textView17"
-        android:layout_alignEnd="@+id/textView17"
-        android:id="@+id/textView18"
+        android:layout_below="@+id/textViewPressure"
+        android:layout_alignRight="@+id/textViewPressure"
+        android:layout_alignEnd="@+id/textViewPressure"
+        android:id="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -104,8 +106,8 @@
         android:text="@string/labelHumidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView15"
-        android:layout_below="@+id/textView14"
+        android:id="@+id/textViewHumidity"
+        android:layout_below="@+id/textViewFeelsLike"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -113,8 +115,8 @@
         android:text="@string/labelWinds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView19"
-        android:layout_below="@+id/textView18"
+        android:id="@+id/textViewWinds"
+        android:layout_below="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

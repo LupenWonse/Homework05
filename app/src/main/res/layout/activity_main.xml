@@ -43,7 +43,8 @@
         android:text="@string/textLabelNoFavorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textFavoritesTitle" />
+        android:id="@+id/textFavoritesTitle"
+        android:gravity="center_horizontal" />
 
     <ListView
         android:layout_width="match_parent"

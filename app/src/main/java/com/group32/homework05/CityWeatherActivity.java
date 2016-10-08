@@ -19,6 +19,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,7 +44,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         setContentView(R.layout.activity_city_weather);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("TEST");
+        actionBar.setTitle(getResources().getString(R.string.label_apptitle));
 
         // Create Progress Dialog
         progressLoadingData = new ProgressDialog(this);
@@ -109,8 +110,10 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
                 // Get the string stored in the preferences
                 SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
                 String jsonString = preferences.getString("FAVS",null);
-
-                Favorite newFavorite = new Favorite("10",city,state, Calendar.getInstance().toString());
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DATE,1);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                Favorite newFavorite = new Favorite("10",city,state, dateFormat.format(calendar.getTime()));
 
                 if (jsonString == null) {
                     // If this preference is not set we have to set it

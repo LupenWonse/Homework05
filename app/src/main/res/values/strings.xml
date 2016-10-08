@@ -927,5 +927,8 @@
 	<string name="actionAddToFav">Add to Favorites</string>
 	<string name="textLabelNoFavorites">There is no city in your Favorites</string>
 	<string name="textLabelFavorites">Favorites</string>
+	<string name="txtview_label_current_location">Current Location:</string>
+	<string name="label_apptitle">City Weather</string>
+	<string name="label_favourites">Favourites</string>
 
 </resources>

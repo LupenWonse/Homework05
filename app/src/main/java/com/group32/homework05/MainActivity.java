@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,14 +54,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         EditText textCity = (EditText) findViewById(R.id.editTextCity);
         EditText textState = (EditText) findViewById(R.id.editTextState);
         //TODO Check input
-
+        boolean isValidate = false;
         String city = textCity.getText().toString();
         String state = textState.getText().toString();
 
-        Intent intent = new Intent(this,CityWeatherActivity.class);
-        intent.putExtra(CITY_EXTRAS_KEY,city);
-        intent.putExtra(STATE_EXTRAS_KEY,state);
-        startActivity(intent);
+        if(city!=null && !city.isEmpty() && state!=null && !state.isEmpty())
+            isValidate = true;
+        if(isValidate) {
+            Intent intent = new Intent(this, CityWeatherActivity.class);
+            intent.putExtra(CITY_EXTRAS_KEY, city);
+            intent.putExtra(STATE_EXTRAS_KEY, state);
+            startActivity(intent);
+        }
+        else
+        {
+            if (city.isEmpty() || city==null)
+            {
+                textCity.setError("City is required");
+            }
+            if (state.isEmpty() || state==null)
+            {
+                textState.setError("State is required");
+            }
+        }
     }
 
 
@@ -69,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         favorites.remove(favoriteListAdapter.getItem(position));
         saveFavoritesList();
         loadFavoritesList();
+        Toast.makeText(MainActivity.this,"City Delete",Toast.LENGTH_LONG).show();
         return true;
     }
 
