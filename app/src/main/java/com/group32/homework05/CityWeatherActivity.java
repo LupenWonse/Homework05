@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -59,8 +60,8 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         textViewCurrentLocation = (TextView) findViewById(R.id.txtViewDataCurrentLocation);
         textViewCurrentLocation.setText(String.format("%s, %s",city,state));
         // TODO Update to the internet APU when done with the codes
-        //String url = "http://api.wunderground.com/api/"+API_KEY+"/hourly/q/"+state+"/"+city+".json";
-        String url = "http://webpages.uncc.edu/agencogl/San_Francisco.json";
+        String url = "http://api.wunderground.com/api/"+API_KEY+"/hourly/q/"+state+"/"+city+".json";
+        //String url = "http://webpages.uncc.edu/agencogl/San_Francisco.json";
         progressLoadingData.show();
         new GetHourlyWeatherAsyncTask(this).execute(url);
     }
@@ -90,9 +91,8 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
 
     }
 
-    @Override
-    public String toString() {
-        return getString(R.string.testJSON);
+    public void onError(String error){
+        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
     }
 
     @Override

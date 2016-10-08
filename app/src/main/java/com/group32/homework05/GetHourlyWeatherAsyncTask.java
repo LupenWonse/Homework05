@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList<Weather>> {
 
     private IWeatherDataHandler dataHandler;
+    private boolean isError = false;
 
     public GetHourlyWeatherAsyncTask(IWeatherDataHandler dataHandler) {
         this.dataHandler = dataHandler;
@@ -36,7 +37,6 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
         try {
             connectionURL = new URL(params[0]);
             HttpURLConnection connection = (HttpURLConnection) connectionURL.openConnection();
-            Log.d("test",connectionURL.toString());
             connection.setRequestMethod("GET");
             connection.connect();
             InputStream inputStream = connection.getInputStream();
@@ -51,7 +51,7 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
             String JSONResponse = stringBuilder.toString();
 
             // TODO Remove DEBUG CODE
-            JSONResponse = dataHandler.toString();
+            //JSONResponse = dataHandler.toString();
             return parseJSON(JSONResponse);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -68,6 +68,15 @@ public class GetHourlyWeatherAsyncTask extends AsyncTask<String, Void, ArrayList
 
         try {
             JSONObject rootJSON = new JSONObject(jsonResponse);
+
+            // Check for error
+            JSONObject responseJSON = rootJSON.getJSONObject("response");
+            if (responseJSON.has("error")){
+
+            }
+
+
+
             JSONArray hourlyJSON = rootJSON.getJSONArray("hourly_forecast");
 
             for(int item = 0 ; item < hourlyJSON.length() ; item ++){
