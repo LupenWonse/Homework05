@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Homework05</string>
+    <string name="app_name">Weather App</string>
     <string name="progressDataLodingText">Loading Hourly Data</string>
     <string name="hintCity">City (i.e. Charlotte)</string>
     <string name="hintState">State (i.e. NC)</string>
