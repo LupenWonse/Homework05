@@ -131,6 +131,11 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionAddToFav:
+                if(weatherData == null) {
+                    Toast.makeText(this,getString(R.string.toastNoWeatherData),Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
                 Log.d("test", "HELLO");
                 // Get the string stored in the preferences
                 SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
