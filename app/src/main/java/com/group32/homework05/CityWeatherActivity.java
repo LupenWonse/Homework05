@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,7 +67,8 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         textViewCurrentLocation = (TextView) findViewById(R.id.txtViewDataCurrentLocation);
         textViewCurrentLocation.setText(String.format("%s, %s", city, state));
         // TODO Update to the internet APU when done with the codes
-        String url = "http://api.wunderground.com/api/" + API_KEY + "/hourly/q/" + state + "/" + city + ".json";
+            String url = "http://api.wunderground.com/api/" + API_KEY + "/hourly/q/" + state + "/" + city + ".json";
+            url = url.replaceAll(" ","%20");
         //String url = "http://webpages.uncc.edu/agencogl/San_Francisco.json";
         progressLoadingData.show();
         new GetHourlyWeatherAsyncTask(this).execute(url);
