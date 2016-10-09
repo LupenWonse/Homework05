@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static String CITY_EXTRAS_KEY = "extras_city";
     public static String STATE_EXTRAS_KEY = "extras_state";
+    public static String FAVORITES_PREF_KEY = "FAVS";
 
     private ArrayList<Favorite> favorites;
     private FavoriteListAdapter favoriteListAdapter;
@@ -94,13 +95,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String jsonString = gson.toJson(favorites);
 
         SharedPreferences.Editor editor = getSharedPreferences("PREFS",0).edit();
-        editor.putString("FAVS",jsonString);
+        editor.putString(MainActivity.FAVORITES_PREF_KEY,jsonString);
         editor.apply();
     }
 
     private void loadFavoritesList(){
         SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
-        String jsonFavorites = preferences.getString("FAVS",null);
+        String jsonFavorites = preferences.getString(MainActivity.FAVORITES_PREF_KEY,null);
 
         if( jsonFavorites != null) {
             Gson gson = new Gson();

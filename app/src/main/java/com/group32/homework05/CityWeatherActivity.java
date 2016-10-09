@@ -139,7 +139,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
                 Log.d("test", "HELLO");
                 // Get the string stored in the preferences
                 SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
-                String jsonString = preferences.getString("FAVS", null);
+                String jsonString = preferences.getString(MainActivity.FAVORITES_PREF_KEY, null);
 
                 if (jsonString != null) {
                     Gson gson = new Gson();
@@ -169,7 +169,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
                     jsonString = gson.toJson(favoritesList);
 
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("FAVS", jsonString);
+                    editor.putString(MainActivity.FAVORITES_PREF_KEY, jsonString);
                     editor.commit();
 
                     Toast.makeText(this, getString(R.string.toastAddedToFav), Toast.LENGTH_SHORT).show();
@@ -188,7 +188,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
                     jsonString = gson.toJson(favoritesList);
 
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("FAVS", jsonString);
+                    editor.putString(MainActivity.FAVORITES_PREF_KEY, jsonString);
                     editor.commit();
 
                     Toast.makeText(this, getString(R.string.toastAddedToFav), Toast.LENGTH_SHORT).show();
