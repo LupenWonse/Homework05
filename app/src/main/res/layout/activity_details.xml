@@ -33,14 +33,14 @@
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageLargeWeather"
         android:layout_centerHorizontal="true"
         android:id="@+id/textTemperature"
         android:foregroundGravity="center_horizontal"
-        android:layout_marginTop="-18dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:textAlignment="center"
         android:textStyle="normal|bold"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_below="@+id/imageLargeWeather" />
 
     <TextView
         android:text="TextView"
