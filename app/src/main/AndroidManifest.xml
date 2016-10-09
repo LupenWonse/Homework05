@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CityWeatherActivity" />
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".DetailsActivity"
+            android:label="City Weather" />
     </application>
 
 </manifest>

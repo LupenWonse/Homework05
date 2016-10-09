@@ -27,7 +27,7 @@ public class DetailsActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.textClouds)).setText(weather.getClouds());
         ((TextView) findViewById(R.id.textHumidity)).setText(String.format("%s%%",weather.getHumidity()));
         ((TextView) findViewById(R.id.textPressure)).setText(String.format("%s hpa",weather.getPressure()));
-        ((TextView) findViewById(R.id.textWinds)).setText(String.format("%s mph,%s",weather.getWindSpeed(),weather.getWindDirection()));
+        ((TextView) findViewById(R.id.textWinds)).setText(String.format("%s mph, %s",weather.getWindSpeed(),weather.getWindDirection()));
         ((TextView) findViewById(R.id.textTemperature)).setText(String.format("%s° F",weather.getTemperature()));
         ((TextView) findViewById(R.id.textClimate)).setText(weather.getClimateType());
         ((TextView) findViewById(R.id.textMaxTemperature)).setText(String.format("%s Fahrenheit",weather.getMaximumTemperature()));

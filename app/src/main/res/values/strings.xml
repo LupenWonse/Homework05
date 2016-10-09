@@ -932,4 +932,10 @@
 	<string name="label_favourites">Favourites</string>
 	<string name="toastAddedToFav">Added to Favorites</string>
 	<string name="toastUpdatedInFav">Updated Favorites Record</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
