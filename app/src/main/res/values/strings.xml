@@ -930,5 +930,6 @@
 	<string name="txtview_label_current_location">Current Location:</string>
 	<string name="label_apptitle">City Weather</string>
 	<string name="label_favourites">Favourites</string>
-
+	<string name="toastAddedToFav">Added to Favorites</string>
+	<string name="toastUpdatedInFav">Updated Favorites Record</string>
 </resources>

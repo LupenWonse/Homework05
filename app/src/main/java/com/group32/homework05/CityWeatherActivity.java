@@ -43,7 +43,7 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     private ListView weatherListView;
     private TextView textViewCurrentLocation;
     String maximumTemparature;
-    String mininumTemparature ;
+    String mininumTemparature;
 
 
     @Override
@@ -63,9 +63,9 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         city = getIntent().getStringExtra(MainActivity.CITY_EXTRAS_KEY);
         state = getIntent().getStringExtra(MainActivity.STATE_EXTRAS_KEY);
         textViewCurrentLocation = (TextView) findViewById(R.id.txtViewDataCurrentLocation);
-        textViewCurrentLocation.setText(String.format("%s, %s",city,state));
+        textViewCurrentLocation.setText(String.format("%s, %s", city, state));
         // TODO Update to the internet APU when done with the codes
-        String url = "http://api.wunderground.com/api/"+API_KEY+"/hourly/q/"+state+"/"+city+".json";
+        String url = "http://api.wunderground.com/api/" + API_KEY + "/hourly/q/" + state + "/" + city + ".json";
         //String url = "http://webpages.uncc.edu/agencogl/San_Francisco.json";
         progressLoadingData.show();
         new GetHourlyWeatherAsyncTask(this).execute(url);
@@ -78,8 +78,8 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
         Weather minTemp = Collections.min(weatherData);
         maximumTemparature = maxTemp.getTemperature();
         mininumTemparature = minTemp.getTemperature();
-        for (Weather currentWeatherData:weatherData
-             ) {
+        for (Weather currentWeatherData : weatherData
+                ) {
             currentWeatherData.setMaximumTemperature(maximumTemparature);
             currentWeatherData.setMinimumTemperature(mininumTemparature);
             currentWeatherData.setCity(city);
@@ -90,15 +90,15 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
 
         weatherListView = (ListView) findViewById(R.id.listHourlyWeather);
         weatherListView.setOnItemClickListener(this);
-        weatherAdapter = new WeatherListAdapter(this,R.layout.weather_list_row,this.weatherData);
+        weatherAdapter = new WeatherListAdapter(this, R.layout.weather_list_row, this.weatherData);
         weatherListView.setAdapter(weatherAdapter);
         weatherAdapter.notifyDataSetChanged();
 
     }
 
-    public void onError(String error){
+    public void onError(String error) {
         progressLoadingData.dismiss();
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -106,13 +106,13 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
             public void run() {
                 finish();
             }
-        },5000);
+        }, 5000);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra(WEATHER_DATA_KEY,weatherAdapter.getItem(position));
+        intent.putExtra(WEATHER_DATA_KEY, weatherAdapter.getItem(position));
 
         startActivity(intent);
     }
@@ -128,43 +128,65 @@ public class CityWeatherActivity extends AppCompatActivity implements IWeatherDa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionAddToFav:
-                Log.d("test","HELLO");
+                Log.d("test", "HELLO");
                 // Get the string stored in the preferences
-                SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
-                String jsonString = preferences.getString("FAVS",null);
-                Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.DATE,1);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
-                Favorite newFavorite = new Favorite(maximumTemparature,city,state, dateFormat.format(calendar.getTime()));
+                SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
+                String jsonString = preferences.getString("FAVS", null);
 
-                if (jsonString == null) {
+                if (jsonString != null) {
+                    Gson gson = new Gson();
+                    ArrayList<Favorite> favoritesList = gson.fromJson(jsonString, new TypeToken<ArrayList<Favorite>>() {
+                    }.getType());
+
+                    for (int index = 0; index < favoritesList.size(); index++) {
+
+                        Favorite currentFavorite = favoritesList.get(index);
+                        if (currentFavorite.getCity().equalsIgnoreCase(city) && currentFavorite.getState().equalsIgnoreCase(state)) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.add(Calendar.DATE, 1);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                            favoritesList.set(index, new Favorite(maximumTemparature, city, state, dateFormat.format(calendar.getTime())));
+                            Toast.makeText(this, getString(R.string.toastUpdatedInFav), Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+                    }
+
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.DATE, 1);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                    Favorite newFavorite = new Favorite(maximumTemparature, city, state, dateFormat.format(calendar.getTime()));
+
+                    favoritesList.add(newFavorite);
+
+                    jsonString = gson.toJson(favoritesList);
+
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("FAVS", jsonString);
+                    editor.commit();
+
+                    Toast.makeText(this, getString(R.string.toastAddedToFav), Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayList<Favorite> favoritesList = new ArrayList<>();
                     // If this preference is not set we have to set it
 
-                    ArrayList<Favorite> favoritesList = new ArrayList<>();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.DATE, 1);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+                    Favorite newFavorite = new Favorite(maximumTemparature, city, state, dateFormat.format(calendar.getTime()));
+
                     favoritesList.add(newFavorite);
 
                     Gson gson = new Gson();
                     jsonString = gson.toJson(favoritesList);
 
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("FAVS",jsonString);
+                    editor.putString("FAVS", jsonString);
                     editor.commit();
-                } else {
 
-                    Gson gson = new Gson();
-                    ArrayList<Favorite> favoritesList = gson.fromJson(jsonString,new TypeToken<ArrayList<Favorite>>(){}.getType());
-
-                    favoritesList.add(newFavorite);
-
-                    jsonString = gson.toJson(favoritesList);
-
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("FAVS",jsonString);
-                    editor.commit();
+                    Toast.makeText(this, getString(R.string.toastAddedToFav), Toast.LENGTH_SHORT).show();
+                    return true;
                 }
-
         }
         return true;
     }
-
 }
