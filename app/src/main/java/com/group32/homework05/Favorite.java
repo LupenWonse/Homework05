@@ -1,11 +1,8 @@
 package com.group32.homework05;
 
-/**
- * Created by ahmet on 05/10/2016.
- */
-
 public class Favorite {
 
+    // Simple class to hold Favorites
     private String temperature, city, state, updateDate;
 
     public Favorite(String temperature, String city, String state, String updateDate) {
@@ -16,7 +13,6 @@ public class Favorite {
     }
 
     public String getTemperature() {
-
         return temperature;
     }
 

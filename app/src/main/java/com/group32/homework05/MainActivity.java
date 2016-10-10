@@ -1,21 +1,17 @@
 package com.group32.homework05;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
@@ -33,11 +29,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Setup the favorites list with adapter
         favoriteListView = (ListView) findViewById(R.id.listFavorites);
         favorites = new ArrayList<>();
         favoriteListAdapter = new FavoriteListAdapter(this,R.layout.favorite_list_row,favorites);
         favoriteListView.setAdapter(favoriteListAdapter);
         favoriteListView.setOnItemLongClickListener(this);
+        // Update the favorites list from the Shared Preferences
         loadFavoritesList();
 
 
@@ -46,15 +44,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onRestart() {
         super.onRestart();
+        // When the activity is restarted we need to update the favorites list
         loadFavoritesList();
     }
 
 
 
     public void startSearch(View view){
+        // User clicks on submit
         EditText textCity = (EditText) findViewById(R.id.editTextCity);
         EditText textState = (EditText) findViewById(R.id.editTextState);
-        //TODO Check input
+
+        // Check input
         boolean isValidate = false;
         String city = textCity.getText().toString();
         String state = textState.getText().toString();
@@ -71,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             if (city.isEmpty() || city==null)
             {
-                textCity.setError("City is required");
+                textCity.setError(getString(R.string.errorNoCity));
             }
             if (state.isEmpty() || state==null)
             {
-                textState.setError("State is required");
+                textState.setError(getString(R.string.errorNoState));
             }
         }
     }
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        // Remove favorite on long click
         favorites.remove(favoriteListAdapter.getItem(position));
         saveFavoritesList();
         loadFavoritesList();
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void saveFavoritesList() {
+        // Put the favorites list into JSON using the GSON library and store in the
+        // SharedPreferences
         Gson gson = new Gson();
         String jsonString = gson.toJson(favorites);
 
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void loadFavoritesList(){
+        // Load the favorites list from the SharedPreferences
         SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
         String jsonFavorites = preferences.getString(MainActivity.FAVORITES_PREF_KEY,null);
 
