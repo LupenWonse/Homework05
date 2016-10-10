@@ -940,4 +940,6 @@
     <string name="action_settings">Settings</string>
 	<string name="hourlyDataTabLabel">Hourly Data</string>
 	<string name="toastNoWeatherData">No weather data available</string>
+	<string name="errorNoCity">City is required</string>
+	<string name="errorNoState">State is required</string>
 </resources>
