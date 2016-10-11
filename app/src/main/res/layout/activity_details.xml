@@ -13,13 +13,33 @@
 
     <TextView
         android:text="@string/txtview_label_current_location"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewCurrentLocationLabel" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textCurrentLocation" />
+        android:id="@+id/textCurrentLocation"
+        android:textStyle="normal|bold"
+        android:paddingLeft="55dp" />
 
+    <View android:id="@+id/locationSeparator"
+        android:background="@android:color/darker_gray"
+        android:layout_width = "wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/textCurrentLocation"
+        android:layout_marginBottom="-5dp"/>
 
+    <View android:id="@+id/imageSeparator"
+        android:background="@android:color/darker_gray"
+        android:layout_width = "wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/textViewMinimumTempararure"
+        android:layout_marginBottom="-5dp"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -27,7 +47,10 @@
         android:layout_below="@+id/textCurrentLocation"
         android:layout_centerHorizontal="true"
         android:id="@+id/imageLargeWeather"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:paddingTop="5dp"
+        android:layout_marginTop="10dp" />
+
 
     <TextView
         android:text="TextView"
@@ -61,7 +84,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textViewMaximumTemparature"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp" />
 
     <TextView
         android:text="@string/labelMinTemperature"
@@ -71,7 +95,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textViewMinimumTempararure"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="21dp" />
 
     <TextView
         android:text="@string/labelFeelsLike"
@@ -82,7 +107,8 @@
         android:layout_alignParentStart="true"
         android:id="@+id/textViewFeelsLike"
         android:layout_marginTop="10dp"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="@string/labelDewpoint"
@@ -92,7 +118,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textViewDewPoint"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="@string/labelPressure"
@@ -102,7 +129,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textViewPressure"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="@string/labelClouds"
@@ -114,7 +142,8 @@
         android:id="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="@string/labelHumidity"
@@ -124,7 +153,8 @@
         android:layout_below="@+id/textViewFeelsLike"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="@string/labelWinds"
@@ -134,7 +164,8 @@
         android:layout_below="@+id/textViewClouds"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingLeft="80dp" />
 
     <TextView
         android:text="TextView"
@@ -145,7 +176,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -156,7 +188,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -167,7 +200,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -178,7 +212,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -189,7 +224,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -201,7 +237,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -212,7 +249,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textStyle="normal|bold"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingRight="65dp" />
 
     <TextView
         android:text="TextView"
@@ -223,6 +261,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textStyle="normal|bold"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:paddingRight="65dp" />
 
 </RelativeLayout>

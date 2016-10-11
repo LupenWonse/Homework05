@@ -33,7 +33,8 @@ public class DetailsActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.textClimate)).setText(weather.getClimateType());
             ((TextView) findViewById(R.id.textMaxTemperature)).setText(String.format("%s Fahrenheit",weather.getMaximumTemperature()));
             ((TextView) findViewById(R.id.textMinTemperature)).setText(String.format("%s Fahrenheit",weather.getMinimumTemperature()));
-            ((TextView) findViewById(R.id.textCurrentLocation)).setText(weather.getLocation() + " " + weather.getFormattedTime());
+            ((TextView) findViewById(R.id.textCurrentLocation)).setText(weather.getLocation() + " (" + weather.getFormattedTime()+")");
+
             // Load the image with Picasso library
             Picasso.with(this).load(weather.getIconURL()).into((ImageView)findViewById(R.id.imageLargeWeather));
         }
