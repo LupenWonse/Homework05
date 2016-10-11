@@ -1,3 +1,10 @@
+/*
+ Homwork 5
+ City Weather Activity
+ Akarsh Gupta     - 800969888
+ Ahmet Gencoglu   - 800982227
+*/
+
 package com.group32.homework05;
 
 import android.app.ProgressDialog;
